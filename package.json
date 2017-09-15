@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/cherniavskii/create-duck#readme",
   "dependencies": {
-    "commander": "^2.11.0"
+    "prompt": "^1.0.0"
   }
 }
