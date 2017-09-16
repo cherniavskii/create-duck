@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const prompt = require("prompt");
 const path = require("path");
 const fs = require("fs");
