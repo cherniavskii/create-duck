@@ -1,9 +1,9 @@
 {
   "name": "create-duck",
   "version": "0.1.0",
-  "description": "",
-  "main": "create-duck.js",
-  "bin": "./create-duck",
+  "description": "CLI script for creating Redux ducks",
+  "main": "./create-duck.js",
+  "bin": "./create-duck.js",
   "scripts": {
     "start": "./create-duck.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/cherniavskii/create-duck.git"
   },
-  "author": "",
+  "author": "cherniavskii",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cherniavskii/create-duck/issues"
