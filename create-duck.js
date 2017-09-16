@@ -21,6 +21,7 @@ prompt.message = " ";
 prompt.delimiter = ">";
 
 prompt.get(schema, (err, result) => {
+	if (err !== null) return console.log();
 	const { name } = result;
 	const filename = path.resolve(name + ".js");
 	fs.writeSync(fs.openSync(filename, "w"), duckContent(name));
