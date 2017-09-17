@@ -1,11 +1,11 @@
 {
   "name": "create-duck",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI script for creating Redux ducks",
-  "main": "./create-duck.js",
-  "bin": "./create-duck.js",
+  "main": "./src/create-duck.js",
+  "bin": "./src/create-duck.js",
   "scripts": {
-    "start": "./create-duck.js",
+    "start": "./src/create-duck.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -3,7 +3,7 @@
 const prompt = require("prompt");
 const path = require("path");
 const fs = require("fs");
-const duckContent = require("./duck-content");
+const duckTemplate = require("./duck.template");
 
 const schema = {
 	properties: {
@@ -24,6 +24,6 @@ prompt.get(schema, (err, result) => {
 	if (err !== null) return console.log();
 	const { name } = result;
 	const filename = path.resolve(name + ".js");
-	fs.writeSync(fs.openSync(filename, "w"), duckContent(name));
+	fs.writeSync(fs.openSync(filename, "w"), duckTemplate(name));
 	console.log(`Created ${name} duck`);
 });
