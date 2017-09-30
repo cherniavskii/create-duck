@@ -1,6 +1,6 @@
 {
   "name": "create-duck",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "CLI script for creating Redux ducks",
   "main": "./src/create-duck.js",
   "bin": "./src/create-duck.js",
