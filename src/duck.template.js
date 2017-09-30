@@ -1,7 +1,7 @@
-module.exports = (duckName) => {
-	const name = duckName.toLowerCase();
-	const NAME = duckName.toUpperCase();
-	const Name = duckName[0].toUpperCase() + name.substr(1);
+module.exports = (names) => {
+	var name = names.name,
+			Name = names.Name,
+			NAME = names.NAME;
 	return (
 		`import { createLogic } from 'redux-logic';
 
@@ -40,7 +40,7 @@ const fetch${Name}Cancel = () => ({
 /*
  * REDUCER
  */
- 
+
 const initialState = {};
 
 const reducer = (state = initialState, action) => {
