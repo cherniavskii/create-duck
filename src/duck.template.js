@@ -80,7 +80,7 @@ const get${Name} = state => state;
 export default reducer;
 
 export const actions = {
-	fetch${Name},
+  fetch${Name},
   fetch${Name}Success,
   fetch${Name}Cancel,
 };
@@ -96,7 +96,7 @@ export const logic = {
 };
 
 export const selectors = {
-	get${Name},
+  get${Name},
 };`
 );
 };
