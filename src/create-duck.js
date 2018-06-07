@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
 const inquirer = require("inquirer");
+const { PathPrompt } = require('inquirer-path');
 const path = require("path");
 const fs = require("fs");
 const duckTemplate = require("./duck.template");
 const generateDuckNames = require("./util").generateDuckNames;
+
+inquirer.prompt.registerPrompt('path', PathPrompt);
 
 const questions = [
 	{
@@ -14,10 +17,10 @@ const questions = [
 		default: 'default',
 	},
 	{
-    type: 'input',
+    type: 'path',
     name: 'destination',
     message: 'Duck destination path',
-		default: './',
+    directoryOnly: true,
 	},
 ];
 

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/cherniavskii/create-duck#readme",
   "dependencies": {
-    "inquirer": "^6.0.0"
+    "inquirer": "^6.0.0",
+    "inquirer-path": "^1.0.0-beta5"
   }
 }
