@@ -4,8 +4,10 @@ module.exports = (names) => {
 			NAME = names.NAME;
 	return (
 		`import { createLogic } from 'redux-logic';
+		
+export const name = '${name}';
 
-const prefix = '${name}/';
+const prefix = \`\${name}/\`;
 
 /*
  * TYPES
