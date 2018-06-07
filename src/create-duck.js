@@ -14,7 +14,13 @@ const schema = {
 			message: 'Duck name is required',
 			required: true,
 			default: 'default',
-		}
+		},
+    destination: {
+      description: 'Duck destination path',
+      type: 'string',
+      message: 'Duck name is required',
+      default: './',
+    }
 	}
 };
 
@@ -23,9 +29,9 @@ prompt.delimiter = ">";
 
 prompt.get(schema, (err, result) => {
 	if (err !== null) return console.log();
-	const { name } = result;
+	const { name, destination } = result;
 	const duckNames = generateDuckNames(name);
-	const filename = path.resolve(name + ".js");
-	fs.writeSync(fs.openSync(filename, "w"), duckTemplate(duckNames));
-	console.log(`Created ${name} duck`);
+	const filePath = path.resolve(destination, name + ".js");
+	fs.writeSync(fs.openSync(filePath, "w"), duckTemplate(duckNames));
+	console.log(`Created duck ${filePath}`);
 });
