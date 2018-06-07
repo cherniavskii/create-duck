@@ -24,37 +24,85 @@ Running `create-duck` command and entering `user-data` as duck name will generat
 ```
 import { createLogic } from 'redux-logic';
 
+export const name = 'default';
+
+const prefix = `${name}/`;
+
 /*
  * TYPES
  */
 
-const prefix = 'userData/';
+const FETCH_DEFAULT = `${prefix}FETCH_DEFAULT`;
+const FETCH_DEFAULT_SUCCESS = `${prefix}FETCH_DEFAULT_SUCCESS`;
+const FETCH_DEFAULT_CANCEL = `${prefix}FETCH_DEFAULT_CANCEL`;
 
-const FETCH_USER_DATA = `${prefix}FETCH_USER_DATA`;
-const FETCH_USER_DATA_SUCCESS = `${prefix}FETCH_USER_DATA_SUCCESS`;
-const FETCH_USER_DATA_CANCEL = `${prefix}FETCH_USER_DATA_CANCEL`;
+export const types = {
+  FETCH_DEFAULT,
+  FETCH_DEFAULT_SUCCESS,
+  FETCH_DEFAULT_CANCEL,
+};
+
 
 /*
  * ACTIONS
  */
 
-const fetchUserDataSuccess = data => ({
-  type: FETCH_USER_DATA_SUCCESS,
-  data,
-});
-
-const fetchUserData = options => ({
-  type: FETCH_USER_DATA,
+const fetchDefault = options => ({
+  type: FETCH_DEFAULT,
   payload: {
-    url: 'userData',
+    url: 'default',
     method: 'post',
     ...options,
   },
 });
 
-const fetchUserDataCancel = () => ({
-  type: FETCH_USER_DATA_CANCEL,
+const fetchDefaultSuccess = data => ({
+  type: FETCH_DEFAULT_SUCCESS,
+  data,
 });
+
+const fetchDefaultCancel = () => ({
+  type: FETCH_DEFAULT_CANCEL,
+});
+
+export const actions = {
+  fetchDefault,
+  fetchDefaultSuccess,
+  fetchDefaultCancel,
+};
+
+
+/*
+ * SELECTORS
+ */
+
+const getState = state => state[name];
+const getDefault = state => getState(state);
+
+export const selectors = {
+	getState,
+  getDefault,
+};
+
+
+/*
+ * LOGIC
+ */
+
+const fetchDefaultLogic = createLogic({
+  type: FETCH_DEFAULT,
+  cancelType: [FETCH_DEFAULT_CANCEL],
+  latest: true,
+  process({ action: { payload }, httpClient, cancelled$ }) {
+    return httpClient.cancellable(payload, cancelled$)
+      .then(({ data }) => fetchDefaultSuccess(data));
+  },
+});
+
+export const logic = {
+  fetchDefaultLogic,
+};
+
 
 /*
  * REDUCER
@@ -63,58 +111,15 @@ const fetchUserDataCancel = () => ({
 const initialState = {};
 
 const reducer = (state = initialState, action) => {
-  const actions = {
-    [FETCH_USER_DATA_SUCCESS]: () => ({
-      ...action.data,
-    }),
-  };
-
-  return (actions[action.type] && actions[action.type]()) || state;
+	switch (action.type) {
+    case FETCH_DEFAULT_SUCCESS:
+      return {
+        ...action.data
+      };
+    default:
+      return state;
+  }
 };
-
-/*
- * LOGIC
- */
-
-const fetchUserDataLogic = createLogic({
-  type: FETCH_USER_DATA,
-  cancelType: [FETCH_USER_DATA_CANCEL],
-  latest: true,
-  process({ action: { payload }, httpClient, cancelled$ }) {
-    return httpClient.cancellable(payload, cancelled$)
-      .then(({ data }) => fetchUserDataSuccess(data));
-  },
-});
-
-/*
- * SELECTORS
- */
-
-const getUserData = state => state;
-
-/*
- * EXPORTS
- */
 
 export default reducer;
-
-export const actions = {
-	fetchUserData,
-  fetchUserDataSuccess,
-  fetchUserDataCancel,
-};
-
-export const types = {
-  FETCH_USER_DATA,
-  FETCH_USER_DATA_SUCCESS,
-  FETCH_USER_DATA_CANCEL,
-};
-
-export const logic = {
-  fetchUserDataLogic,
-};
-
-export const selectors = {
-	getUserData,
-};
 ```
