@@ -57,9 +57,12 @@ export const actions = {
  * SELECTORS
  */
 
-const get${Name} = state => state;
+const getState = state => state[name];
+
+const get${Name} = state => getState(state);
 
 export const selectors = {
+	getState,
   get${Name},
 };
 
