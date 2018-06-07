@@ -1,10 +1,23 @@
-module.exports = (names) => {
+module.exports = (names, useReselect = false) => {
 	var name = names.name,
 			Name = names.Name,
 			NAME = names.NAME;
 	return (
 		`import { createLogic } from 'redux-logic';
-		
+`
+
++
+
+(useReselect ?
+`import { createSelector } from 'reselect';
+`
+	:
+	''
+)
+
++
+
+`
 export const name = '${name}';
 
 const prefix = \`\${name}/\`;
@@ -58,8 +71,25 @@ export const actions = {
  */
 
 const getState = state => state[name];
+`
 
-const get${Name} = state => getState(state);
++
+
+(useReselect ?
+
+`const get${Name} = createSelector(
+	getState,
+	state => state,
+);`
+
+:
+
+`const get${Name} = state => getState(state);`
+)
+
++
+
+`
 
 export const selectors = {
 	getState,
