@@ -1,8 +1,8 @@
 # create-duck
 CLI script for creating [Redux ducks](https://github.com/erikras/ducks-modular-redux).
-Uses [redux-logic](https://github.com/jeffbski/redux-logic) middleware.
+Uses [redux-logic](https://github.com/jeffbski/redux-logic) middleware and [reselect](https://github.com/reduxjs/reselect) (optionally).
 
-Generates boilerplate duck file, which can be modified/extended with extra types/actions/logic.
+Generates duck file, which can be modified/extended with extra types/actions/logic.
 
 ## Motivation
 Created for personal needs to avoid writing boilerplate code over and over.
@@ -12,12 +12,15 @@ Install NPM package globally:
 ```
 npm i -g create-duck
 ```
-Run `create-duck` command in duck destionation directory. You will be prompted to enter duck name.
+Run `create-duck` command. You will be prompted to enter:
+- duck name
+- duck destination path
+- whether to use 'reselet' for selectors or not
 
 :warning: Remember to import reducer/logic from duck and add them to root reducer/logic.
 
 ## Example
-Running `create-duck` command and entering `user-data` as duck name will generate in working directory `user-data.js` file with following content:
+Running `create-duck` command and entering `user-data` as duck name will generate in current working directory `user-data.js` file with following content:
 ```
 import { createLogic } from 'redux-logic';
 
