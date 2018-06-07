@@ -123,13 +123,14 @@ export const logic = {
 const initialState = {};
 
 const reducer = (state = initialState, action) => {
-  const actions = {
-    [FETCH_${NAME}_SUCCESS]: () => ({
-      ...action.data,
-    }),
-  };
-
-  return (actions[action.type] && actions[action.type]()) || state;
+	switch (action.type) {
+    case FETCH_${NAME}_SUCCESS:
+      return {
+        ...action.data
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;
