@@ -4,36 +4,52 @@ const inquirer = require("inquirer");
 const { PathPrompt } = require('inquirer-path');
 const path = require("path");
 const fs = require("fs");
-const duckTemplate = require("./duck.template");
+const generateDuck = require("./templates/fetch");
 const generateDuckNames = require("./util").generateDuckNames;
 
 inquirer.prompt.registerPrompt('path', PathPrompt);
 
 const questions = [
-	{
-		type: 'input',
-		name: 'name',
+  {
+    type: 'input',
+    name: 'name',
     message: 'Duck name (kebab-case)',
-		default: 'default',
-	},
-	{
+    default: 'data',
+  },
+  {
     type: 'path',
     name: 'destination',
     message: 'Duck destination path',
     directoryOnly: true,
-	},
+  },
   {
     name: 'reselect',
     type: 'confirm',
     default: false,
     message: 'Use reselect for selectors?',
-  }
+  },
+  {
+    name: 'url',
+    type: 'input',
+    message: 'Where to fetch data from?',
+    default: ({ name }) => `/${name}`,
+  },
+  {
+    name: 'cancellable',
+    type: 'confirm',
+    default: false,
+    message: 'Make data fetching request cancellable?',
+  },
 ];
 
 inquirer.prompt(questions).then(answers => {
-  const { name, destination, reselect } = answers;
+  const { name, destination, ...other } = answers;
   const duckNames = generateDuckNames(name);
   const filePath = path.resolve(destination, name + ".js");
-  fs.writeSync(fs.openSync(filePath, "w"), duckTemplate(duckNames, reselect));
+  const templateConfig = {
+    names: duckNames,
+    ...other,
+  };
+  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(templateConfig));
   console.log(`Created duck ${filePath}`);
 });
