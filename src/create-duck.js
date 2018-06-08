@@ -10,18 +10,18 @@ const generateDuckNames = require("./util").generateDuckNames;
 inquirer.prompt.registerPrompt('path', PathPrompt);
 
 const questions = [
-	{
-		type: 'input',
-		name: 'name',
+  {
+    type: 'input',
+    name: 'name',
     message: 'Duck name (kebab-case)',
-		default: 'data',
-	},
-	{
+    default: 'data',
+  },
+  {
     type: 'path',
     name: 'destination',
     message: 'Duck destination path',
     directoryOnly: true,
-	},
+  },
   {
     name: 'reselect',
     type: 'confirm',
