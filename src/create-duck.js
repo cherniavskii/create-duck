@@ -14,7 +14,7 @@ const questions = [
 		type: 'input',
 		name: 'name',
     message: 'Duck name (kebab-case)',
-		default: 'default',
+		default: 'data',
 	},
 	{
     type: 'path',
