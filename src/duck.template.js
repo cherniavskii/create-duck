@@ -78,8 +78,8 @@ const getState = state => state[name];
 (useReselect ?
 
 `const get${Name} = createSelector(
-	getState,
-	state => state,
+  getState,
+  state => state,
 );`
 
 :
@@ -92,7 +92,7 @@ const getState = state => state[name];
 `
 
 export const selectors = {
-	getState,
+  getState,
   get${Name},
 };
 
@@ -123,10 +123,10 @@ export const logic = {
 const initialState = {};
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
+  switch (action.type) {
     case FETCH_${NAME}_SUCCESS:
       return {
-        ...action.data
+        ...action.data,
       };
     default:
       return state;
