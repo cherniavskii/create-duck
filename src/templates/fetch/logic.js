@@ -1,4 +1,4 @@
-module.exports = (names) => {
+module.exports = (names, reselect, cancellable) => {
   var Name = names.Name,
       NAME = names.NAME;
 
@@ -11,10 +11,22 @@ module.exports = (names) => {
 const fetch${Name}Logic = createLogic({
   type: FETCH_${NAME},
   cancelType: [FETCH_${NAME}_CANCEL],
-  latest: true,
+  latest: true,`
+
++
+(cancellable ?
+`
   process({ action: { payload }, httpClient, cancelled$ }) {
     return httpClient.cancellable(payload, cancelled$)
-      .then(({ data }) => fetch${Name}Success(data));
+`
+:
+`
+  process({ action: { payload }, httpClient }) {
+    return httpClient(payload)
+`
+)
++
+`      .then(({ data }) => fetch${Name}Success(data));
   },
 });
 

@@ -27,13 +27,19 @@ const questions = [
     type: 'confirm',
     default: false,
     message: 'Use reselect for selectors?',
-  }
+  },
+  {
+    name: 'cancellable',
+    type: 'confirm',
+    default: false,
+    message: 'Make httpClient request cancellable?',
+  },
 ];
 
 inquirer.prompt(questions).then(answers => {
-  const { name, destination, reselect } = answers;
+  const { name, destination, reselect, cancellable } = answers;
   const duckNames = generateDuckNames(name);
   const filePath = path.resolve(destination, name + ".js");
-  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(duckNames, reselect));
+  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(duckNames, reselect, cancellable));
   console.log(`Created duck ${filePath}`);
 });
