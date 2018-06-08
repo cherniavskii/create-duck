@@ -4,7 +4,7 @@ const inquirer = require("inquirer");
 const { PathPrompt } = require('inquirer-path');
 const path = require("path");
 const fs = require("fs");
-const duckTemplate = require("./duck.template");
+const generateDuck = require("./templates/fetch");
 const generateDuckNames = require("./util").generateDuckNames;
 
 inquirer.prompt.registerPrompt('path', PathPrompt);
@@ -34,6 +34,6 @@ inquirer.prompt(questions).then(answers => {
   const { name, destination, reselect } = answers;
   const duckNames = generateDuckNames(name);
   const filePath = path.resolve(destination, name + ".js");
-  fs.writeSync(fs.openSync(filePath, "w"), duckTemplate(duckNames, reselect));
+  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(duckNames, reselect));
   console.log(`Created duck ${filePath}`);
 });
