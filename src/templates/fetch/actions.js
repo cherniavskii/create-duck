@@ -1,4 +1,4 @@
-module.exports = ({ names }) => {
+module.exports = ({ names, url }) => {
   var name = names.name,
       NAME = names.NAME,
       Name = names.Name;
@@ -12,7 +12,7 @@ module.exports = ({ names }) => {
 const fetch${Name} = options => ({
   type: FETCH_${NAME},
   payload: {
-    url: '/${name}',
+    url: '${url}',
     method: 'post',
     ...options,
   },

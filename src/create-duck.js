@@ -29,10 +29,16 @@ const questions = [
     message: 'Use reselect for selectors?',
   },
   {
+    name: 'url',
+    type: 'input',
+    message: 'Where to fetch data from?',
+    default: ({ name }) => `/${name}`,
+  },
+  {
     name: 'cancellable',
     type: 'confirm',
     default: false,
-    message: 'Make httpClient request cancellable?',
+    message: 'Make data fetching request cancellable?',
   },
 ];
 
