@@ -12,7 +12,7 @@ module.exports = ({ names }) => {
 const fetch${Name} = options => ({
   type: FETCH_${NAME},
   payload: {
-    url: '${name}',
+    url: '/${name}',
     method: 'post',
     ...options,
   },
