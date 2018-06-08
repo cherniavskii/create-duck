@@ -1,4 +1,4 @@
-module.exports = (names, useReselect) => {
+module.exports = ({ names, useReselect }) => {
   var Name = names.Name;
 
   return (

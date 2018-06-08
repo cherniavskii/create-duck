@@ -37,9 +37,13 @@ const questions = [
 ];
 
 inquirer.prompt(questions).then(answers => {
-  const { name, destination, reselect, cancellable } = answers;
+  const { name, destination, ...other } = answers;
   const duckNames = generateDuckNames(name);
   const filePath = path.resolve(destination, name + ".js");
-  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(duckNames, reselect, cancellable));
+  const templateConfig = {
+    names: duckNames,
+    ...other,
+  };
+  fs.writeSync(fs.openSync(filePath, "w"), generateDuck(templateConfig));
   console.log(`Created duck ${filePath}`);
 });

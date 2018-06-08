@@ -1,4 +1,4 @@
-module.exports = (names, reselect, cancellable) => {
+module.exports = ({ names, cancellable }) => {
   var Name = names.Name,
       NAME = names.NAME;
 
