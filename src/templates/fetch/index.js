@@ -6,21 +6,21 @@ const generateSelectors = require('./selectors');
 const generateLogic = require('./logic');
 const generateReducer = require('./reducer');
 
-module.exports = (names, useReselect, cancellable) => {
+module.exports = (config) => {
   return (
-    generateImports(names, useReselect, cancellable)
+    generateImports(config)
     + '\n' +
-    generateName(names, useReselect, cancellable)
+    generateName(config)
     + '\n' +
-    generateTypes(names, useReselect, cancellable)
+    generateTypes(config)
     + '\n' +
-    generateActions(names, useReselect, cancellable)
+    generateActions(config)
     + '\n' +
-    generateSelectors(names, useReselect, cancellable)
+    generateSelectors(config)
     + '\n' +
-    generateLogic(names, useReselect, cancellable)
+    generateLogic(config)
     + '\n' +
-    generateReducer(names, useReselect, cancellable)
+    generateReducer(config)
     + '\n'
   );
 };

@@ -1,4 +1,4 @@
-module.exports = (names) => {
+module.exports = ({ names }) => {
   var NAME = names.NAME;
 
   return (

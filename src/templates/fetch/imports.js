@@ -1,4 +1,4 @@
-module.exports = (names, useReselect, cancellable) => {
+module.exports = ({ names, useReselect }) => {
   return (
     `import { createLogic } from 'redux-logic';`
 +
