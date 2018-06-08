@@ -1,9 +1,9 @@
-module.exports = ({ names, useReselect }) => {
+module.exports = ({ names, reselect }) => {
   return (
     `import { createLogic } from 'redux-logic';`
 +
 
-(useReselect ?
+(reselect ?
 `
 import { createSelector } from 'reselect';`
 	:

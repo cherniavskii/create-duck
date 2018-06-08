@@ -1,4 +1,4 @@
-module.exports = ({ names, useReselect }) => {
+module.exports = ({ names, reselect }) => {
   var Name = names.Name;
 
   return (
@@ -12,7 +12,7 @@ const getState = state => state[name];
 
 +
 
-(useReselect ?
+(reselect ?
 
 `const get${Name} = createSelector(
   getState,
