@@ -13,7 +13,7 @@ const fetch${Name} = options => ({
   type: FETCH_${NAME},
   payload: {
     url: '${url}',
-    method: 'post',
+    method: 'get',
     ...options,
   },
 });
